@@ -28,7 +28,7 @@ const routes = [
     color: "text-sky-500",
   },
   {
-    label: "Chat",
+    label: "Chat AI",
     icon: MessageSquare,
     href: "/conversation",
     color: "text-violet-500",
