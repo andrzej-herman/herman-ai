@@ -10,14 +10,14 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <main className="md:pl-80">
         <Navbar />
         {children}
-        <footer className="absolute bottom-0">
-          <div className="flex items-center justify-center p-4">
-            <p className="text-xs text-gray-400 text-center">
-              Developed by Andrzej Herman &copy; Społeczna Akademia Nauk w Łodzi
-            </p>
-          </div>
-        </footer>
       </main>
+      <footer className="bottom-0 ml-0 md:ml-80 mt-6">
+        <div className="flex items-center justify-center p-4">
+          <p className="text-xs text-gray-400 text-center">
+            Developed by Andrzej Herman &copy; Społeczna Akademia Nauk w Łodzi
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
