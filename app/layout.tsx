@@ -27,4 +27,4 @@ export default function RootLayout({
   );
 }
 
-// time: 1:20:11 Conversation AI UI
+// time: 1:42:28 Create account on OpenAI
