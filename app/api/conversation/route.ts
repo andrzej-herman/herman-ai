@@ -33,7 +33,6 @@ export async function POST(req: Request) {
       messages,
     });
 
-    console.log(`DATA RECIVED: ${response.data}`);
     return NextResponse.json(response.data.choices[0].message);
   } catch (error) {
     console.log("[CHAT AI ERROR]", error);
