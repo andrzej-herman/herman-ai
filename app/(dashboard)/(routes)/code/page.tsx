@@ -4,7 +4,7 @@ import axios from "axios";
 import * as z from "zod";
 import Heading from "@/components/heading";
 import { Input } from "@/components/ui/input";
-import { MessageSquare } from "lucide-react";
+import { Code, Divide } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema } from "./constants";
@@ -18,8 +18,9 @@ import Loader from "@/components/loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
+import ReactMarkdown from "react-markdown";
 
-const ConversationPage = () => {
+const CodeGenerationPage = () => {
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -39,7 +40,7 @@ const ConversationPage = () => {
 
       const newMessages = [...messages, userMessage];
 
-      const response = await axios.post("/api/conversation", {
+      const response = await axios.post("/api/code", {
         messages: newMessages,
       });
 
@@ -56,11 +57,11 @@ const ConversationPage = () => {
   return (
     <div>
       <Heading
-        title="Chat AI"
-        description="Herman AI - most advanced chat conversation model"
-        icon={MessageSquare}
-        iconColor="text-violet-500"
-        bgColor="bg-violet-500/10"
+        title="Code Generation"
+        description="Generate software code in any programming language using descriptive text"
+        icon={Code}
+        iconColor="text-green-700"
+        bgColor="bg-green-700/10"
       />
       <div className="px-4 lg:px-8">
         <div>
@@ -81,7 +82,7 @@ const ConversationPage = () => {
                         className="border-0 outline-none 
                       focus-visible:ring-0 focus-visible:ring-transparent w-full"
                         disabled={isLoading}
-                        placeholder="Write a prompt or ask Herman AI about something ..."
+                        placeholder="What code would you like to generate?"
                         {...field}
                       />
                     </FormControl>
@@ -107,7 +108,7 @@ const ConversationPage = () => {
             </div>
           )}
           {messages.length === 0 && !isLoading && (
-            <Empty label="No conversation started" type="conversation" />
+            <Empty label="No code generations yet" />
           )}
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message) => (
@@ -121,7 +122,21 @@ const ConversationPage = () => {
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                <p className="text-sm text-justify">{message.content}</p>
+                <ReactMarkdown
+                  components={{
+                    pre: ({ node, ...props }) => (
+                      <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
+                        <pre {...props} />
+                      </div>
+                    ),
+                    code: ({ node, ...props }) => (
+                      <code className="bg-black/10 rounded-lg p-1" {...props} />
+                    ),
+                  }}
+                  className="text-sm overflow-hidden leading-7"
+                >
+                  {message.content || ""}
+                </ReactMarkdown>
               </div>
             ))}
           </div>
@@ -131,4 +146,4 @@ const ConversationPage = () => {
   );
 };
 
-export default ConversationPage;
+export default CodeGenerationPage;
