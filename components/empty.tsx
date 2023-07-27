@@ -19,6 +19,8 @@ const Empty = ({ label, type }: EmptyProps) => {
               ? "/photo.png"
               : type === "music"
               ? "/voice.png"
+              : type === "video"
+              ? "/video.png"
               : "/transcript.png"
           }
         />
