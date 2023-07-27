@@ -19,6 +19,15 @@ import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
 import { useProModal } from "@/hooks/use-pro-modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Card } from "@/components/ui/card";
 
 const ConversationPage = () => {
   const proModal = useProModal();
@@ -110,7 +119,47 @@ const ConversationPage = () => {
             </div>
           )}
           {messages.length === 0 && !isLoading && (
-            <Empty label="No conversation started" type="conversation" />
+            <>
+              <Empty label="No conversation started" type="conversation" />
+              <div className="flex items-center justify-center">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button>Prompt examples</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>Chat AI prompt examples</DialogTitle>
+                      <DialogDescription>
+                        <div className="mt-4">
+                          <p>
+                            You can ask any question to Chat AI or tell do write
+                            something. Below you will find example prompts.
+                          </p>
+                          <div className="flex flex-col gap-y-3 mt-4">
+                            <Card className="px-3 py-2">
+                              write some sentences about cities in east coast of
+                              United States
+                            </Card>
+                            <Card className="px-3 py-2">
+                              tell me about all historic capitals of Poland
+                            </Card>
+                            <Card className="px-3 py-2">
+                              who is a hypochondriac?
+                            </Card>
+                            <Card className="px-3 py-2">
+                              write a short essey about journey around the world
+                            </Card>
+                            <Card className="px-3 py-2">
+                              how do you multiply matrices?
+                            </Card>
+                          </div>
+                        </div>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            </>
           )}
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message) => (

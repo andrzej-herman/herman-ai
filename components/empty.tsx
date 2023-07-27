@@ -7,7 +7,7 @@ interface EmptyProps {
 
 const Empty = ({ label, type }: EmptyProps) => {
   return (
-    <div className="h-full p-20 flex flex-col items-center justify-center">
+    <div className="h-full pt-20 pl-20 pr-20 pb-2 flex flex-col items-center justify-center">
       <div className="relative h-72 w-72">
         <Image
           alt="No messages"

@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import { Check, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+
 const ProModal = () => {
   const proModal = useProModal();
 
@@ -41,7 +42,9 @@ const ProModal = () => {
                   <div className={cn("p-2 w-fit rounded-md", tool.bgColor)}>
                     <tool.icon className={cn("w-6 h-6", tool.color)} />
                   </div>
-                  <div className="font-semibold text-sm">{tool.label}</div>
+                  <div className="font-semibold text-sm">
+                    {tool.label}
+                  </div>
                 </div>
                 <Check className="text-primary w-5 h-5" />
               </Card>

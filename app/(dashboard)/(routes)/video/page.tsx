@@ -15,6 +15,15 @@ import { useState } from "react";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
 import { useProModal } from "@/hooks/use-pro-modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Card } from "@/components/ui/card";
 
 const VideoGenerationPage = () => {
   const proModal = useProModal();
@@ -98,8 +107,43 @@ const VideoGenerationPage = () => {
             </div>
           )}
           {!video && !isLoading && (
-            <Empty label="No video generated yet" type="video" />
+            <>
+              <Empty label="No video generated yet" type="video" />
+              <div className="flex items-center justify-center">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button>Prompt examples</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>
+                        Video Generation prompt examples
+                      </DialogTitle>
+                      <DialogDescription>
+                        <div className="mt-4">
+                          <p>
+                            You can generate any video you want. Just put a
+                            detailed description. Below you will find example
+                            prompts.
+                          </p>
+                          <div className="flex flex-col gap-y-3 mt-4">
+                            <Card className="px-3 py-2">
+                              animated children playing on the street
+                            </Card>
+                            <Card className="px-3 py-2">
+                              red fish in deep ocean
+                            </Card>
+                            <Card className="px-3 py-2">flying parrots</Card>
+                          </div>
+                        </div>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            </>
           )}
+
           {video && (
             <video
               controls

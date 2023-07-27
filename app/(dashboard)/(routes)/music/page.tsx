@@ -15,6 +15,15 @@ import { useState } from "react";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
 import { useProModal } from "@/hooks/use-pro-modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Card } from "@/components/ui/card";
 
 const MusicGenerationPage = () => {
   const proModal = useProModal();
@@ -98,7 +107,41 @@ const MusicGenerationPage = () => {
             </div>
           )}
           {!music && !isLoading && (
-            <Empty label="No music generated yet" type="music" />
+            <>
+              <Empty label="No music generated yet" type="music" />
+              <div className="flex items-center justify-center">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button>Prompt examples</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>
+                        Music Generation prompt examples
+                      </DialogTitle>
+                      <DialogDescription>
+                        <div className="mt-4">
+                          <p>
+                            You can generate any music you want. Just put a
+                            detailed description. Below you will find example
+                            prompts.
+                          </p>
+                          <div className="flex flex-col gap-y-3 mt-4">
+                            <Card className="px-3 py-2">
+                              a quiet melody for children to sleep
+                            </Card>
+                            <Card className="px-3 py-2">
+                              fast and energetic music for running
+                            </Card>
+                            <Card className="px-3 py-2">piano solo</Card>
+                          </div>
+                        </div>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            </>
           )}
           {music && (
             <audio controls className="w-full mt-8">

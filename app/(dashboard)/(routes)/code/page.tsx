@@ -20,6 +20,15 @@ import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
 import ReactMarkdown from "react-markdown";
 import { useProModal } from "@/hooks/use-pro-modal";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Card } from "@/components/ui/card";
 
 const CodeGenerationPage = () => {
   const proModal = useProModal();
@@ -66,6 +75,7 @@ const CodeGenerationPage = () => {
         iconColor="text-green-700"
         bgColor="bg-green-700/10"
       />
+
       <div className="px-4 lg:px-8">
         <div>
           <Form {...form}>
@@ -92,6 +102,7 @@ const CodeGenerationPage = () => {
                   </FormItem>
                 )}
               />
+
               <Button
                 className="col-span-12 lg:col-span-2 w-full"
                 disabled={isLoading}
@@ -111,7 +122,47 @@ const CodeGenerationPage = () => {
             </div>
           )}
           {messages.length === 0 && !isLoading && (
-            <Empty label="No code generations yet" />
+            <>
+              <Empty label="No code generations yet" />
+              <div className="flex items-center justify-center">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button>Prompt examples</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>Code generation prompt examples</DialogTitle>
+                      <DialogDescription>
+                        <div className="mt-4">
+                          <p>
+                            You can generate any code in any programming
+                            language. Below you will find example prompts.
+                          </p>
+                          <div className="flex flex-col gap-y-3 mt-4">
+                            <Card className="px-3 py-2">
+                              a method in Python that shows first 30 elements in
+                              Fibonacci sequence
+                            </Card>
+                            <Card className="px-3 py-2">
+                              toggle button hook in React typescript
+                            </Card>
+                            <Card className="px-3 py-2">
+                              bubble sort algorithm in Java
+                            </Card>
+                            <Card className="px-3 py-2">
+                              connection to sql-server database using golang
+                            </Card>
+                            <Card className="px-3 py-2">
+                              product class with some properties in c#
+                            </Card>
+                          </div>
+                        </div>
+                      </DialogDescription>
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            </>
           )}
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message) => (
