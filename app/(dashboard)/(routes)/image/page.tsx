@@ -48,7 +48,7 @@ const ImageGenarationPage = () => {
       form.reset();
     } catch (error: any) {
       // TODO: Open Pro Modal
-      console.log(`[CHAT AI ERROR]: ${error}`);
+      console.log(`[IMAGE GENERATION ERROR]: ${error}`);
     } finally {
       router.refresh();
     }
@@ -159,7 +159,7 @@ const ImageGenarationPage = () => {
 
         <div className="space-y-4 mt-6">
           {isLoading && (
-            <div className="p-20">
+            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
               <Loader />
             </div>
           )}
