@@ -15,3 +15,20 @@ model UserApiLimit {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model UserSubscription {
+  id String @id @default(cuid())
+  userId String @unique
+  stripeCustomerId String? @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId String? @unique @map(name: "stripe_subscription_id")
+  stripePriceId String? @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd String? @map(name: "stripe_current_period_end")
+  subscriptionType String
+  totalNumberOfGenerationsGranted Int
+  numberOfUsedGenerations Int @default(0)
+}
+
+
+// 4.99$ za 25 szt => Beginner
+// 14.99$ za 100 szt. => Standard
+// 29.99$ za 250 szt. => Premium
