@@ -12,10 +12,10 @@ const DashboardPage = () => {
     <div>
       <div className="mb-8 space-y-4">
         <h2 className="text-2xl md:text-4xl font-bold text-center">
-          Explore the power of Artificial Intelligence (AI)
+          Odkryj potęgę sztucznej inteligencji
         </h2>
         <h5 className="text-muted-foreground font-normal text-xs md:text-lg text-center">
-          Chat with the smartest Herman AI - experience the power of AI
+          Poznaj Geniusza - najbardziej zaawansowany model AI
         </h5>
       </div>
       <div className="px-4 md:px-20 lg:px-32 space-y-4">

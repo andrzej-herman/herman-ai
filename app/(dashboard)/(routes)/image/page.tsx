@@ -24,14 +24,15 @@ import {
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { useProModal } from "@/hooks/use-pro-modal";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import GenerationExamples from "@/components/generation-examples";
+
+const examples = [
+  "czerwony pies biegający po ulicy",
+  "czarny koń w szwajcarskich Alpach",
+  "logo firmy zajmującej się usługami medycznymi",
+  "czarna papuga siedząca na drewnianym parapecie",
+  "mama prowadząca dzieci do przedszkola",
+];
 
 const ImageGenarationPage = () => {
   const proModal = useProModal();
@@ -67,8 +68,8 @@ const ImageGenarationPage = () => {
   return (
     <div>
       <Heading
-        title="Image Generation"
-        description="Turn your ideas into fantastic images genarated by Herman AI"
+        title="Generowanie obrazów"
+        description="Zamień swoje pomysły na obrazy wygenerowane przez sztuczną inteligencję"
         icon={ImageIcon}
         iconColor="text-pink-700"
         bgColor="bg-pink-700/10"
@@ -92,7 +93,7 @@ const ImageGenarationPage = () => {
                         className="border-0 outline-none 
                       focus-visible:ring-0 focus-visible:ring-transparent w-full"
                         disabled={isLoading}
-                        placeholder="Discribe what image/s would you like to generate"
+                        placeholder="Opisz dokładnie jaki obraz/obrazy chcesz wygenerować ..."
                         {...field}
                       />
                     </FormControl>
@@ -161,7 +162,7 @@ const ImageGenarationPage = () => {
                 type="submit"
                 size="icon"
               >
-                Generate
+                Start
               </Button>
             </form>
           </Form>
@@ -175,47 +176,12 @@ const ImageGenarationPage = () => {
           )}
           {images.length === 0 && !isLoading && (
             <>
-              <Empty label="No images generated yet" type="photo" />
-              <div className="flex items-center justify-center">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button>Prompt examples</Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                      <DialogTitle>
-                        Image Generation prompt examples
-                      </DialogTitle>
-                      <DialogDescription>
-                        <div className="mt-4">
-                          <p>
-                            You can generate images of whatever you want. Just
-                            put a detailed description. Below you will find
-                            example prompts.
-                          </p>
-                          <div className="flex flex-col gap-y-3 mt-4">
-                            <Card className="px-3 py-2">
-                              red animated fish on the street
-                            </Card>
-                            <Card className="px-3 py-2">
-                            black horse in swiss Alps
-                            </Card>
-                            <Card className="px-3 py-2">
-                              company logo connected with medical services
-                            </Card>
-                            <Card className="px-3 py-2">
-                            an animated ping parrot with big head on beer can
-                            </Card>
-                            <Card className="px-3 py-2">
-                              four cats with different size in a row
-                            </Card>
-                          </div>
-                        </div>
-                      </DialogDescription>
-                    </DialogHeader>
-                  </DialogContent>
-                </Dialog>
-              </div>
+              <Empty label="Brak wygenerowanych obrazów" type="photo" />
+              <GenerationExamples
+                title="Przykładowe zapytania do generatora obrazów"
+                description="Możesz wygenerowac obrazy czegokolwiek chcesz. Poniżej znajdziesz przykładowe zapytania."
+                examples={examples}
+              />
             </>
           )}
           <div
@@ -235,7 +201,7 @@ const ImageGenarationPage = () => {
                     className="w-full"
                   >
                     <Download className="h-4 w-4 mr-2" />
-                    Download
+                    Pobierz
                   </Button>
                 </CardFooter>
               </Card>

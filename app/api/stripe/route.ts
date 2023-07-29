@@ -34,7 +34,7 @@ export async function GET() {
       success_url: settingsUrl,
       cancel_url: settingsUrl,
       payment_method_types: ["card", "paypal"],
-      mode: "payment",
+      mode: "subscription",
       billing_address_collection: "auto",
       customer_email: user.emailAddresses[0].emailAddress,
       line_items: [
@@ -42,8 +42,8 @@ export async function GET() {
           price_data: {
             currency: "USD",
             product_data: {
-              name: "Herman AI Pro (100 generations)",
-              description: "The package of 100 generations of any type",
+              name: "Herman AI Pro (100 generations valid 1 month)",
+              description: "The package of 100 generations of any type valid one month",
             },
             unit_amount: 1499,
           },

@@ -30,7 +30,7 @@ const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
         <CardContent className="py-6">
           <div className="text-center text-sm text-white mb-4 space-y-2">
             <p>
-              {apiLimitCount} / {MAX_FREE_COUNTS} free generations used
+              Masz {5 - apiLimitCount} z {MAX_FREE_COUNTS} darmowych tokenów
             </p>
             <Progress
               className="h-3"
@@ -42,7 +42,7 @@ const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
             className="w-full"
             variant="premium"
           >
-            Upgrade
+            Zdobądź więcej tokenów
             <Zap className="w-4 h-4 ml-2 fill-white" />
           </Button>
         </CardContent>

@@ -19,15 +19,15 @@ import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
 import { useProModal } from "@/hooks/use-pro-modal";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Card } from "@/components/ui/card";
+import GenerationExamples from "@/components/generation-examples";
+
+const examples = [
+  "napisz krótki tekst na temat czterech miast nad polskim Bałtykiem",
+  "powiedz mi coś o historycznych stolicach Polski",
+  "kto to jest hipochondryk?",
+  "napisz esej na temat podróży dookoła świata",
+  "jak się mnoży macierze?",
+];
 
 const ConversationPage = () => {
   const proModal = useProModal();
@@ -68,8 +68,8 @@ const ConversationPage = () => {
   return (
     <div>
       <Heading
-        title="Chat AI"
-        description="Herman AI - most advanced chat conversation model"
+        title="Czat AI"
+        description="Najbardziej zaawansowany czat oparty na sztucznej inteligencji"
         icon={MessageSquare}
         iconColor="text-violet-500"
         bgColor="bg-violet-500/10"
@@ -93,7 +93,7 @@ const ConversationPage = () => {
                         className="border-0 outline-none 
                       focus-visible:ring-0 focus-visible:ring-transparent w-full"
                         disabled={isLoading}
-                        placeholder="Write a prompt or ask Herman AI about something ..."
+                        placeholder="Zapytaj o coś Geniusza lub po prostu rozpocznij rozmowę ..."
                         {...field}
                       />
                     </FormControl>
@@ -106,7 +106,7 @@ const ConversationPage = () => {
                 type="submit"
                 size="icon"
               >
-                Generate
+                Start
               </Button>
             </form>
           </Form>
@@ -120,45 +120,12 @@ const ConversationPage = () => {
           )}
           {messages.length === 0 && !isLoading && (
             <>
-              <Empty label="No conversation started" type="conversation" />
-              <div className="flex items-center justify-center">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button>Prompt examples</Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                      <DialogTitle>Chat AI prompt examples</DialogTitle>
-                      <DialogDescription>
-                        <div className="mt-4">
-                          <p>
-                            You can ask any question to Chat AI or tell do write
-                            something. Below you will find example prompts.
-                          </p>
-                          <div className="flex flex-col gap-y-3 mt-4">
-                            <Card className="px-3 py-2">
-                              write some sentences about cities in east coast of
-                              United States
-                            </Card>
-                            <Card className="px-3 py-2">
-                              tell me about all historic capitals of Poland
-                            </Card>
-                            <Card className="px-3 py-2">
-                              who is a hypochondriac?
-                            </Card>
-                            <Card className="px-3 py-2">
-                              write a short essey about journey around the world
-                            </Card>
-                            <Card className="px-3 py-2">
-                              how do you multiply matrices?
-                            </Card>
-                          </div>
-                        </div>
-                      </DialogDescription>
-                    </DialogHeader>
-                  </DialogContent>
-                </Dialog>
-              </div>
+              <Empty label="Brak rozmów" type="conversation" />
+              <GenerationExamples
+                title="Przykładowe zapytania do czatu AI"
+                description="Możesz zapytać Geniusza o cokolwiek lub nawiązać z nim rozmowę. Poniżej znajdziesz przykłady."
+                examples={examples}
+              />
             </>
           )}
           <div className="flex flex-col-reverse gap-y-4">

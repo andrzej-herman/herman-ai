@@ -20,15 +20,15 @@ import UserAvatar from "@/components/user-avatar";
 import BotAvatar from "@/components/bot-avatar";
 import ReactMarkdown from "react-markdown";
 import { useProModal } from "@/hooks/use-pro-modal";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Card } from "@/components/ui/card";
+import GenerationExamples from "@/components/generation-examples";
+
+const examples = [
+  "metoda zwracająca pierwsze 40 elementów ciągu Fibonnaciego w języku Python",
+  "toggle button hook napisany w React z użyciem języka typescript",
+  "sortowanie bąbelkowe w języku Java",
+  "połaczenie do bazy danych sql-server w języku Go",
+  "przykładowa klasa Produkt z typowymi właściwościami i metodami w języku C#",
+];
 
 const CodeGenerationPage = () => {
   const proModal = useProModal();
@@ -69,8 +69,8 @@ const CodeGenerationPage = () => {
   return (
     <div>
       <Heading
-        title="Code Generation"
-        description="Generate software code in any programming language using descriptive text"
+        title="Generowanie kodu aplikacji"
+        description="Generuj poprawny kod źródłowy w dowolnym języku programowania używając opisu tekstowego"
         icon={Code}
         iconColor="text-green-700"
         bgColor="bg-green-700/10"
@@ -95,7 +95,7 @@ const CodeGenerationPage = () => {
                         className="border-0 outline-none 
                       focus-visible:ring-0 focus-visible:ring-transparent w-full"
                         disabled={isLoading}
-                        placeholder="What code would you like to generate?"
+                        placeholder="Jak kod chcesz wygenerować?"
                         {...field}
                       />
                     </FormControl>
@@ -104,12 +104,12 @@ const CodeGenerationPage = () => {
               />
 
               <Button
-                className="col-span-12 lg:col-span-2 w-full"
+                className="col-span-12 lg:col-span-2 w-full px-3"
                 disabled={isLoading}
                 type="submit"
                 size="icon"
               >
-                Generate
+                Start
               </Button>
             </form>
           </Form>
@@ -123,45 +123,12 @@ const CodeGenerationPage = () => {
           )}
           {messages.length === 0 && !isLoading && (
             <>
-              <Empty label="No code generations yet" />
-              <div className="flex items-center justify-center">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button>Prompt examples</Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                      <DialogTitle>Code generation prompt examples</DialogTitle>
-                      <DialogDescription>
-                        <div className="mt-4">
-                          <p>
-                            You can generate any code in any programming
-                            language. Below you will find example prompts.
-                          </p>
-                          <div className="flex flex-col gap-y-3 mt-4">
-                            <Card className="px-3 py-2">
-                              a method in Python that shows first 30 elements in
-                              Fibonacci sequence
-                            </Card>
-                            <Card className="px-3 py-2">
-                              toggle button hook in React typescript
-                            </Card>
-                            <Card className="px-3 py-2">
-                              bubble sort algorithm in Java
-                            </Card>
-                            <Card className="px-3 py-2">
-                              connection to sql-server database using golang
-                            </Card>
-                            <Card className="px-3 py-2">
-                              product class with some properties in c#
-                            </Card>
-                          </div>
-                        </div>
-                      </DialogDescription>
-                    </DialogHeader>
-                  </DialogContent>
-                </Dialog>
-              </div>
+              <Empty label="Brak wygenerowanego kodu" />
+              <GenerationExamples
+                title="Przykładowe zapytania o kod aplikacji"
+                description="Możesz wygenerować dowolny kod w dowolnym języku programowania. Poniżej znajdziesz przykłady zapytań."
+                examples={examples}
+              />
             </>
           )}
           <div className="flex flex-col-reverse gap-y-4">
