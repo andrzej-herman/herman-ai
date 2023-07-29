@@ -28,7 +28,3 @@ model UserSubscription {
   numberOfUsedGenerations Int @default(0)
 }
 
-
-// 4.99$ za 25 szt => Beginner
-// 14.99$ za 100 szt. => Standard
-// 29.99$ za 250 szt. => Premium

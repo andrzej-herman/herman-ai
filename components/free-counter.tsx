@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Zap } from "lucide-react";
 import { useProModal } from "@/hooks/use-pro-modal";
+import Link from "next/link";
 
 interface FreeCounterProps {
   apiLimitCount: number;
@@ -29,6 +30,7 @@ const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
       <Card className="bg-white/10 border-0">
         <CardContent className="py-6">
           <div className="text-center text-sm text-white mb-4 space-y-2">
+            <p className="font-bold text-blue-400">Wersja darmowa</p>
             <p>
               Masz {5 - apiLimitCount} z {MAX_FREE_COUNTS} darmowych tokenów
             </p>
@@ -37,14 +39,12 @@ const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
               value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
             />
           </div>
-          <Button
-            onClick={proModal.onOpen}
-            className="w-full"
-            variant="premium"
-          >
-            Zdobądź więcej tokenów
-            <Zap className="w-4 h-4 ml-2 fill-white" />
-          </Button>
+          <Link href="/premiumplans">
+            <Button className="w-full" variant="premium">
+              Zdobądź więcej tokenów
+              <Zap className="w-4 h-4 ml-2 fill-white" />
+            </Button>
+          </Link>
         </CardContent>
       </Card>
     </div>
