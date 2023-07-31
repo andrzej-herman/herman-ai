@@ -17,13 +17,17 @@ import Loader from "@/components/loader";
 import { useMusicVideoModal } from "@/hooks/use-musicvideo-modal";
 import GenerationExamples from "@/components/generation-examples";
 
+interface MusicGenerationPageProps {
+  examples: string[];
+}
+
 export const examples = [
   "spokojna muzyka dla dzieci do snu",
   "szybka i energiczna muzyka funky",
   "solo na pianinie",
 ];
 
-const MusicGenerationPage = () => {
+const MusicGenerationPage = ({ examples }: MusicGenerationPageProps) => {
   const mvModal = useMusicVideoModal();
   const router = useRouter();
   const [music, setMusic] = useState<string>();
