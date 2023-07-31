@@ -13,12 +13,13 @@ const getSubscriptionType = (priceId: string) => {
   else return "Premium";
 };
 
-const getTokens = (priceId: string) => {
-  if (priceId === "price_1NZGvzAbxb6ynim0Qkl8ADH5") return 5;
-  else if (priceId === "price_1NZGzHAbxb6ynim00sMSsQv6") return 10;
-  else if (priceId === "price_1NZH3XAbxb6ynim0UJLNxUpB") return 50;
-  else return 100;
+const getTokens = (priceId: string): string => {
+  if (priceId === "price_1NZGvzAbxb6ynim0Qkl8ADH5") return "5";
+  else if (priceId === "price_1NZGzHAbxb6ynim00sMSsQv6") return "10";
+  else if (priceId === "price_1NZH3XAbxb6ynim0UJLNxUpB") return "50";
+  else return "100";
 };
+
 
 export async function POST(req: NextRequest) {
   const { userId } = auth();
@@ -49,6 +50,7 @@ export async function POST(req: NextRequest) {
       userId,
       subscriptionType,
       numberOfTokens: tokens,
+      stripePriceId: priceId
     },
   });
 
