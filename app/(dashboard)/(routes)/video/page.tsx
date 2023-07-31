@@ -17,13 +17,13 @@ import Loader from "@/components/loader";
 import { useMusicVideoModal } from "@/hooks/use-musicvideo-modal";
 import GenerationExamples from "@/components/generation-examples";
 
-export const examples = [
-  "dwa psy bawiące się na ulicy",
-  "ryba w głębokim oceanie",
-  "reklama Coca Coli",
-];
-
 const VideoGenerationPage = () => {
+  const videoData = [
+    "dwa psy bawiące się na ulicy",
+    "ryba w głębokim oceanie",
+    "reklama Coca Coli",
+  ];
+
   const mvModal = useMusicVideoModal();
   const router = useRouter();
   const [video, setVideo] = useState<string>();
@@ -110,7 +110,7 @@ const VideoGenerationPage = () => {
               <GenerationExamples
                 title="Przykładowe zapytania do generatora video"
                 description="Możesz poprosić Geniusza o stworzenie dowolnego video. Po prostu opisz dokładnie. Poniżej znajdziesz przykłady."
-                examples={examples}
+                examples={videoData}
               />
             </>
           )}
