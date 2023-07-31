@@ -17,17 +17,13 @@ import Loader from "@/components/loader";
 import { useMusicVideoModal } from "@/hooks/use-musicvideo-modal";
 import GenerationExamples from "@/components/generation-examples";
 
-interface MusicGenerationPageProps {
-  examples: string[];
-}
+const MusicGenerationPage = () => {
+  const musicData = [
+    "spokojna muzyka dla dzieci do snu",
+    "szybka i energiczna muzyka funky",
+    "solo na pianinie",
+  ];
 
-export const examples = [
-  "spokojna muzyka dla dzieci do snu",
-  "szybka i energiczna muzyka funky",
-  "solo na pianinie",
-];
-
-const MusicGenerationPage = ({ examples }: MusicGenerationPageProps) => {
   const mvModal = useMusicVideoModal();
   const router = useRouter();
   const [music, setMusic] = useState<string>();
@@ -114,7 +110,7 @@ const MusicGenerationPage = ({ examples }: MusicGenerationPageProps) => {
               <GenerationExamples
                 title="Przykładowe zapytania do generatora muzyki"
                 description="Możesz poprosić o wygenerowanie dowolnej muzyki. Po prostu opisz ją dokładnie. Poniżej znajdziesz przykłady."
-                examples={examples}
+                examples={musicData}
               />
             </>
           )}
