@@ -26,15 +26,15 @@ import Image from "next/image";
 import { useProModal } from "@/hooks/use-pro-modal";
 import GenerationExamples from "@/components/generation-examples";
 
-const examples = [
-  "czerwony pies biegający po ulicy",
-  "czarny koń w szwajcarskich Alpach",
-  "logo firmy zajmującej się usługami medycznymi",
-  "czarna papuga siedząca na drewnianym parapecie",
-  "mama prowadząca dzieci do przedszkola",
-];
-
 const ImageGenarationPage = () => {
+  const imageData = [
+    "czerwony pies biegający po ulicy",
+    "czarny koń w szwajcarskich Alpach",
+    "logo firmy zajmującej się usługami medycznymi",
+    "czarna papuga siedząca na drewnianym parapecie",
+    "mama prowadząca dzieci do przedszkola",
+  ];
+
   const proModal = useProModal();
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
@@ -180,7 +180,7 @@ const ImageGenarationPage = () => {
               <GenerationExamples
                 title="Przykładowe zapytania do generatora obrazów"
                 description="Możesz wygenerowac obrazy czegokolwiek chcesz. Poniżej znajdziesz przykładowe zapytania."
-                examples={examples}
+                examples={imageData}
               />
             </>
           )}

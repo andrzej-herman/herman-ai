@@ -21,15 +21,15 @@ import BotAvatar from "@/components/bot-avatar";
 import { useProModal } from "@/hooks/use-pro-modal";
 import GenerationExamples from "@/components/generation-examples";
 
-const examples = [
-  "napisz krótki tekst na temat czterech miast nad polskim Bałtykiem",
-  "powiedz mi coś o historycznych stolicach Polski",
-  "kto to jest hipochondryk?",
-  "napisz esej na temat podróży dookoła świata",
-  "jak się mnoży macierze?",
-];
-
 const ConversationPage = () => {
+  const chatData = [
+    "napisz krótki tekst na temat czterech miast nad polskim Bałtykiem",
+    "powiedz mi coś o historycznych stolicach Polski",
+    "kto to jest hipochondryk?",
+    "napisz esej na temat podróży dookoła świata",
+    "jak się mnoży macierze?",
+  ];
+
   const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
@@ -124,7 +124,7 @@ const ConversationPage = () => {
               <GenerationExamples
                 title="Przykładowe zapytania do czatu AI"
                 description="Możesz zapytać Geniusza o cokolwiek lub nawiązać z nim rozmowę. Poniżej znajdziesz przykłady."
-                examples={examples}
+                examples={chatData}
               />
             </>
           )}

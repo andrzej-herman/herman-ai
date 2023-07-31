@@ -22,15 +22,15 @@ import ReactMarkdown from "react-markdown";
 import { useProModal } from "@/hooks/use-pro-modal";
 import GenerationExamples from "@/components/generation-examples";
 
-const examples = [
-  "metoda zwracająca pierwsze 40 elementów ciągu Fibonnaciego w języku Python",
-  "toggle button hook napisany w React z użyciem języka typescript",
-  "sortowanie bąbelkowe w języku Java",
-  "połaczenie do bazy danych sql-server w języku Go",
-  "przykładowa klasa Produkt z typowymi właściwościami i metodami w języku C#",
-];
-
 const CodeGenerationPage = () => {
+  const codeData = [
+    "metoda zwracająca pierwsze 40 elementów ciągu Fibonnaciego w języku Python",
+    "toggle button hook napisany w React z użyciem języka typescript",
+    "sortowanie bąbelkowe w języku Java",
+    "połaczenie do bazy danych sql-server w języku Go",
+    "przykładowa klasa Produkt z typowymi właściwościami i metodami w języku C#",
+  ];
+
   const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
@@ -127,7 +127,7 @@ const CodeGenerationPage = () => {
               <GenerationExamples
                 title="Przykładowe zapytania o kod aplikacji"
                 description="Możesz wygenerować dowolny kod w dowolnym języku programowania. Poniżej znajdziesz przykłady zapytań."
-                examples={examples}
+                examples={codeData}
               />
             </>
           )}
