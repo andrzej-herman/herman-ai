@@ -14,6 +14,8 @@ import {
   VideoIcon,
 } from "lucide-react";
 import FreeCounter from "@/components/free-counter";
+import { Badge } from "@/components/ui/badge";
+import ProCounter from "@/components/pro-counter";
 
 const routes = [
   {
@@ -21,36 +23,42 @@ const routes = [
     icon: LayoutDashboard,
     href: "/dashboard",
     color: "text-sky-500",
+    ispro: false,
   },
   {
     label: "Czat AI",
     icon: MessageSquare,
     href: "/conversation",
     color: "text-violet-500",
+    ispro: false,
   },
   {
     label: "Generowanie obrazów",
     icon: ImageIcon,
     href: "/image",
     color: "text-pink-700",
+    ispro: false,
   },
   {
     label: "Generowanie video",
     icon: VideoIcon,
     href: "/video",
     color: "text-orange-600",
+    ispro: true,
   },
   {
     label: "Generowanie muzyki",
     icon: Music,
     href: "/music",
     color: "text-emerald-500",
+    ispro: true,
   },
   {
     label: "Generowanie kodu",
     icon: Code,
     href: "/code",
     color: "text-green-700",
+    ispro: false,
   },
   {
     label: "Ustawienia",
@@ -61,10 +69,18 @@ const routes = [
 ];
 
 interface SidebarProps {
-  apiLimitCount: number;
+  isPro: Boolean;
+  freeTokensUsed: number;
+  proTokensUsed: number;
+  proTokensPurchased: number;
 }
 
-const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
+const Sidebar = ({
+  isPro = false,
+  freeTokensUsed = 0,
+  proTokensUsed = 0,
+  proTokensPurchased = 0,
+}: SidebarProps) => {
   const pathname = usePathname();
 
   return (
@@ -91,12 +107,27 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
               <div className="flex items-center flex-1">
                 <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
                 {route.label}
+                {route.ispro ? (
+                  <Badge
+                    variant="premium"
+                    className="uppercase text-xs ml-2 py-1 px-2"
+                  >
+                    pro
+                  </Badge>
+                ) : null}
               </div>
             </Link>
           ))}
         </div>
       </div>
-      <FreeCounter apiLimitCount={apiLimitCount} />
+      {isPro ? (
+        <ProCounter
+          proTokensUsed={proTokensUsed}
+          proTokensPurchased={proTokensPurchased}
+        />
+      ) : (
+        <FreeCounter freeTokensUsed={freeTokensUsed} />
+      )}
     </div>
   );
 };

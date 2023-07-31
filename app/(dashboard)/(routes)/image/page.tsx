@@ -209,6 +209,9 @@ const ImageGenarationPage = () => {
           </div>
         </div>
       </div>
+      <p className="text-zinc-400 text-center text-xs mt-20">
+        Wykonanie: Andrzej Herman - Software Developer
+      </p>
     </div>
   );
 };

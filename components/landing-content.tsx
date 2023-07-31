@@ -11,7 +11,7 @@ const opinions = [
       "Szybko generuje teksty które potrzebuję. Gdy czegoś nie wiem zawsze mogę się zapytać i dostaję wyczerpującą odpowiedź. Polecam !!!",
   },
   {
-    name: "Kacper Bryński",
+    name: "Kacper Boruń",
     avatar: "KB",
     title: "uczeń",
     description:

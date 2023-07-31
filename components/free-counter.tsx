@@ -10,10 +10,10 @@ import { useProModal } from "@/hooks/use-pro-modal";
 import Link from "next/link";
 
 interface FreeCounterProps {
-  apiLimitCount: number;
+  freeTokensUsed: number;
 }
 
-const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
+const FreeCounter = ({ freeTokensUsed = 0 }: FreeCounterProps) => {
   const proModal = useProModal();
   const [mounted, setMounted] = useState(false);
 
@@ -31,12 +31,12 @@ const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
         <CardContent className="py-6">
           <div className="text-center text-sm text-white mb-4 space-y-2">
             <p className="font-bold text-blue-400">Wersja darmowa</p>
-            <p>
-              Masz {5 - apiLimitCount} z {MAX_FREE_COUNTS} darmowych tokenów
+            <p className="text-xs">
+              Pozostało {MAX_FREE_COUNTS - freeTokensUsed} z {MAX_FREE_COUNTS} darmowych tokenów
             </p>
             <Progress
               className="h-3"
-              value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
+              value={(freeTokensUsed / MAX_FREE_COUNTS) * 100}
             />
           </div>
           <Link href="/premiumplans">

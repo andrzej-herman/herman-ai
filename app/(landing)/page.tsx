@@ -8,6 +8,7 @@ const LandingPage = () => {
       <LandingNavbar />
       <LandingHero />
       <LandingContent/>
+      <p className="text-zinc-400 text-center text-xs">Wykonanie: Andrzej Herman - Software Developer</p>
     </div>
   );
 };

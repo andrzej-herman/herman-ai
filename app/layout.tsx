@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import ProModalProvider from "@/components/pro-modal-provider";
+import MusicVideoModalProvider from "@/components/musicvideo-modal-provider";
 import { plPL } from "@clerk/localizations";
 
 const roboto = Roboto({
@@ -24,6 +25,7 @@ export default function RootLayout({
     <ClerkProvider localization={plPL}>
       <html lang="en">
         <body className={roboto.className}>
+          <MusicVideoModalProvider />
           <ProModalProvider />
           {children}
         </body>
@@ -32,4 +34,8 @@ export default function RootLayout({
   );
 }
 
-// time: 4:21:19
+// time: 4:21:14 webhook
+// RESET PRISMA
+// npx prisma migrate reset
+// npx prisma generate
+// npx prisma db push

@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
-import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkIfCanGenerateVideoAndMusic, increaseUsedTokens } from "@/lib/genius-user";
 
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN!,
@@ -23,11 +23,11 @@ export async function POST(req: Request) {
       });
     }
 
-    const freeTrial = await checkApiLimit();
+    const canGenerate = await checkIfCanGenerateVideoAndMusic();
 
-    if (!freeTrial) {
-      return new NextResponse("Your free prompts have expired", {
-        status: 403,
+    if (!canGenerate) {
+      return new NextResponse("Only pro users can generate music", {
+        status: 402,
       });
     }
 
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
       }
     );
 
-    await increaseApiLimit();
+    await increaseUsedTokens();
 
     return NextResponse.json(response);
   } catch (error) {

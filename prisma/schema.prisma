@@ -8,23 +8,19 @@ datasource db {
   relationMode = "prisma"
 }
 
-model UserApiLimit {
+model GeniusUser {
   id String @id @default(cuid())
   userId String @unique
-  count Int @default(0)
+  freeTokensUsed Int @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  isPro Boolean @default(false)
+  subscriptionType String?
+  stripePriceId String?
+  proTokenPurchased Int @default(0)
+  proTokensUsed Int @default(0)
+  proPurchaseDate DateTime?
 }
 
-model UserSubscription {
-  id String @id @default(cuid())
-  userId String @unique
-  stripeCustomerId String? @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId String? @unique @map(name: "stripe_subscription_id")
-  stripePriceId String? @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd String? @map(name: "stripe_current_period_end")
-  subscriptionType String
-  totalNumberOfGenerationsGranted Int
-  numberOfUsedGenerations Int @default(0)
-}
+
 

@@ -1,26 +1,32 @@
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
-import { getApiLimitCount } from "@/lib/api-limit";
+import {
+  checkIfPro,
+  freeTokensUsed,
+  proTokensUsed,
+  proTokensPurchased,
+} from "@/lib/genius-user";
 
 const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
-  const apiLimitCount = await getApiLimitCount();
+  const pro = await checkIfPro();
+  const freeUsed = await freeTokensUsed();
+  const proUsed = await proTokensUsed();
+  const purchased = await proTokensPurchased();
 
   return (
     <div className="h-full relative">
       <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 bg-gray-900">
-        <Sidebar apiLimitCount={apiLimitCount} />
+        <Sidebar
+          isPro={pro}
+          freeTokensUsed={freeUsed}
+          proTokensUsed={proUsed}
+          proTokensPurchased={purchased}
+        />
       </div>
       <main className="md:pl-80">
         <Navbar />
         {children}
       </main>
-      <footer className="bottom-0 ml-0 md:ml-72 mt-6">
-        <div className="flex items-center justify-center p-4">
-          <p className="text-xs text-gray-400 text-center">
-            Wykonanie: Andrzej Herman &copy; Społeczna Akademia Nauk w Łodzi
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };

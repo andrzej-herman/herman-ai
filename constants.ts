@@ -45,3 +45,39 @@ export const TOOLS = [
     href: "/code",
   },
 ];
+
+export const PREMIUM_PLANS = [
+  {
+    name: "Mikro",
+    description: "5 tokenów Geniusz",
+    price: "4.99",
+    id: "price_1NZGvzAbxb6ynim0Qkl8ADH5",
+  },
+  {
+    name: "Mini",
+    description: "10 tokenów Geniusz",
+    price: "7.99",
+    id: "price_1NZGzHAbxb6ynim00sMSsQv6",
+  },
+  {
+    name: "Standard",
+    description: "50 tokenów Geniusz",
+    price: "29.99",
+    id: "price_1NZH3XAbxb6ynim0UJLNxUpB",
+  },
+  {
+    name: "Premium",
+    description: "100 tokenów Geniusz",
+    price: "49.99",
+    id: "price_1NZH53Abxb6ynim0RJQo4B1M",
+  },
+];
+
+
+
+
+
+// 4.99 PLN Pakiet 5 tokenów => Mikro
+// 7.99 PLN Pakiet 10 tokenów => Mini
+// 29.99 PLN Pakiet 50 tokenów. => Standard (najczęściej wybierany)
+// 49.99 PLN Pakiet 100 tokenów. => Premium

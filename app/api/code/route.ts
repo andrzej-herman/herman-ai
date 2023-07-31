@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
-import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkIfCanGenerate, increaseUsedTokens } from "@/lib/genius-user";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -35,10 +35,10 @@ export async function POST(req: Request) {
       });
     }
 
-    const freeTrial = await checkApiLimit();
+    const canGenerate = await checkIfCanGenerate();
 
-    if (!freeTrial) {
-      return new NextResponse("Your free prompts have expired", {
+    if (!canGenerate) {
+      return new NextResponse("Your prompts have expired", {
         status: 403,
       });
     }
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
       messages: [instructionMessage, ...messages],
     });
 
-    await increaseApiLimit();
+    await increaseUsedTokens();
 
     return NextResponse.json(response.data.choices[0].message);
   } catch (error) {

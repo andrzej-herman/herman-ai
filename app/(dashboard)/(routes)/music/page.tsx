@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
-import { useProModal } from "@/hooks/use-pro-modal";
+import { useMusicVideoModal } from "@/hooks/use-musicvideo-modal";
 import GenerationExamples from "@/components/generation-examples";
 
 export const examples = [
@@ -24,7 +24,7 @@ export const examples = [
 ];
 
 const MusicGenerationPage = () => {
-  const proModal = useProModal();
+  const mvModal = useMusicVideoModal();
   const router = useRouter();
   const [music, setMusic] = useState<string>();
 
@@ -43,8 +43,8 @@ const MusicGenerationPage = () => {
       setMusic(response.data.audio);
       form.reset();
     } catch (error: any) {
-      if (error?.response?.status === 403) {
-        proModal.onOpen();
+      if (error?.response?.status === 402) {
+        mvModal.onOpen();
       }
     } finally {
       router.refresh();
@@ -121,6 +121,9 @@ const MusicGenerationPage = () => {
           )}
         </div>
       </div>
+      <p className="text-zinc-400 text-center text-xs mt-20">
+        Wykonanie: Andrzej Herman - Software Developer
+      </p>
     </div>
   );
 };

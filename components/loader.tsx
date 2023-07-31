@@ -13,7 +13,7 @@ const Loader = ({ long }: LoaderProps) => {
       <p className="text-sm text-muted-foreground">Geniusz myśli ...</p>
       {long ? (
         <p className="text-sm text-muted-foreground">
-          Prosze o cierpliwość. Generowanie video trwa ok 1-2 min.
+          Proszę o cierpliwość. Generowanie video trwa ok 1-2 min.
         </p>
       ) : null}
     </div>

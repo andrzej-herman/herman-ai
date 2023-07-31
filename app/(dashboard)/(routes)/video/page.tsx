@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
-import { useProModal } from "@/hooks/use-pro-modal";
+import { useMusicVideoModal } from "@/hooks/use-musicvideo-modal";
 import GenerationExamples from "@/components/generation-examples";
 
 export const examples = [
@@ -24,7 +24,7 @@ export const examples = [
 ];
 
 const VideoGenerationPage = () => {
-  const proModal = useProModal();
+  const mvModal = useMusicVideoModal();
   const router = useRouter();
   const [video, setVideo] = useState<string>();
 
@@ -43,8 +43,8 @@ const VideoGenerationPage = () => {
       setVideo(response.data[0]);
       form.reset();
     } catch (error: any) {
-      if (error?.response?.status === 403) {
-        proModal.onOpen();
+      if (error?.response?.status === 402) {
+        mvModal.onOpen();
       }
     } finally {
       router.refresh();
@@ -101,7 +101,7 @@ const VideoGenerationPage = () => {
         <div className="space-y-4 mt-6">
           {isLoading && (
             <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
-              <Loader long={true}/>
+              <Loader long={true} />
             </div>
           )}
           {!video && !isLoading && (
@@ -125,6 +125,9 @@ const VideoGenerationPage = () => {
           )}
         </div>
       </div>
+      <p className="text-zinc-400 text-center text-xs mt-20">
+        Wykonanie: Andrzej Herman - Software Developer
+      </p>
     </div>
   );
 };
