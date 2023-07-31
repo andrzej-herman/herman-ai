@@ -6,7 +6,7 @@ import { absoluteUrl } from "@/lib/utils";
 const successUrl = absoluteUrl("/dashboard");
 const cancelUrl = absoluteUrl("/premiumplans");
 
-const getSubscriptionType = (priceId: string) => {
+const getSubscriptionType = (priceId: string): string => {
   if (priceId === "price_1NZGvzAbxb6ynim0Qkl8ADH5") return "Mikro";
   else if (priceId === "price_1NZGzHAbxb6ynim00sMSsQv6") return "Mini";
   else if (priceId === "price_1NZH3XAbxb6ynim0UJLNxUpB") return "Standard";
@@ -19,6 +19,7 @@ const getTokens = (priceId: string): string => {
   else if (priceId === "price_1NZH3XAbxb6ynim0UJLNxUpB") return "50";
   else return "100";
 };
+
 
 
 export async function POST(req: NextRequest) {
@@ -48,9 +49,9 @@ export async function POST(req: NextRequest) {
     ],
     metadata: {
       userId,
-      subscriptionType,
+      subscriptionType: subscriptionType,
       numberOfTokens: tokens,
-      stripePriceId: priceId
+      stripePriceId: priceId,
     },
   });
 

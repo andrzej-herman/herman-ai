@@ -45,8 +45,7 @@ export async function POST(req: Request) {
       }
     }
 
-    session?.metadata?.userId;
-    let subscriptionType = session?.metadata?.ssubscriptionType;
+    let subscriptionType = session?.metadata?.subscriptionType;
     let numberOfTokens = 0;
     if (session) {
       if (session.metadata) {
