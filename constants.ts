@@ -51,25 +51,25 @@ export const PREMIUM_PLANS = [
     name: "Mikro",
     description: "5 tokenów Geniusz",
     price: "4.99",
-    id: "price_1NZGvzAbxb6ynim0Qkl8ADH5",
+    id: "price_1NaCnSAbxb6ynim0pIjqasj0",
   },
   {
     name: "Mini",
     description: "10 tokenów Geniusz",
     price: "7.99",
-    id: "price_1NZGzHAbxb6ynim00sMSsQv6",
+    id: "price_1NaCotAbxb6ynim0oQw5bYRT",
   },
   {
     name: "Standard",
     description: "50 tokenów Geniusz",
     price: "29.99",
-    id: "price_1NZH3XAbxb6ynim0UJLNxUpB",
+    id: "price_1NaCq0Abxb6ynim0vXrX4F7F",
   },
   {
     name: "Premium",
     description: "100 tokenów Geniusz",
     price: "49.99",
-    id: "price_1NZH53Abxb6ynim0RJQo4B1M",
+    id: "price_1NaCr1Abxb6ynim0FmmNAlhe",
   },
 ];
 
