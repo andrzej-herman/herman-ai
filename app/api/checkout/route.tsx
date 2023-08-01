@@ -7,18 +7,47 @@ const successUrl = absoluteUrl("/dashboard");
 const cancelUrl = absoluteUrl("/premiumplans");
 
 const getSubscriptionType = (priceId: string): string => {
-  if (priceId === "price_1NZGvzAbxb6ynim0Qkl8ADH5") return "Mikro";
-  else if (priceId === "price_1NZGzHAbxb6ynim00sMSsQv6") return "Mini";
-  else if (priceId === "price_1NZH3XAbxb6ynim0UJLNxUpB") return "Standard";
+  if (priceId === "price_1NaCnSAbxb6ynim0pIjqasj0") return "Mikro";
+  else if (priceId === "price_1NaCotAbxb6ynim0oQw5bYRT") return "Mini";
+  else if (priceId === "price_1NaCq0Abxb6ynim0vXrX4F7F") return "Standard";
   else return "Premium";
 };
 
 const getTokens = (priceId: string): string => {
-  if (priceId === "price_1NZGvzAbxb6ynim0Qkl8ADH5") return "5";
-  else if (priceId === "price_1NZGzHAbxb6ynim00sMSsQv6") return "10";
-  else if (priceId === "price_1NZH3XAbxb6ynim0UJLNxUpB") return "50";
+  if (priceId === "price_1NaCnSAbxb6ynim0pIjqasj0") return "5";
+  else if (priceId === "price_1NaCotAbxb6ynim0oQw5bYRT") return "10";
+  else if (priceId === "price_1NaCq0Abxb6ynim0vXrX4F7F") return "50";
   else return "100";
 };
+
+
+export const PREMIUM_PLANS = [
+  {
+    name: "Mikro",
+    description: "5 tokenów Geniusz",
+    price: "4.99",
+    id: "price_1NaCnSAbxb6ynim0pIjqasj0",
+  },
+  {
+    name: "Mini",
+    description: "10 tokenów Geniusz",
+    price: "7.99",
+    id: "price_1NaCotAbxb6ynim0oQw5bYRT",
+  },
+  {
+    name: "Standard",
+    description: "50 tokenów Geniusz",
+    price: "29.99",
+    id: "price_1NaCq0Abxb6ynim0vXrX4F7F",
+  },
+  {
+    name: "Premium",
+    description: "100 tokenów Geniusz",
+    price: "49.99",
+    id: "price_1NaCr1Abxb6ynim0FmmNAlhe",
+  },
+];
+
 
 
 
