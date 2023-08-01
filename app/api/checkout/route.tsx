@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
   }
 
   let data = await req.json();
-  let priceId = data.priceId;
+  let priceId = data.priceId as string;
   let subscriptionType = getSubscriptionType(priceId);
   let tokens = getTokens(priceId);
   const session = await stripe.checkout.sessions.create({

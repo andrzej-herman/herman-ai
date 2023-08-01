@@ -60,12 +60,12 @@ const routes = [
     color: "text-green-700",
     ispro: false,
   },
-  {
-    label: "Ustawienia",
-    icon: Settings,
-    href: "/settings",
-    color: "text-gray-400",
-  },
+  // {
+  //   label: "Ustawienia",
+  //   icon: Settings,
+  //   href: "/settings",
+  //   color: "text-gray-400",
+  // },
 ];
 
 interface SidebarProps {
