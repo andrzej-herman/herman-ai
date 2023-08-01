@@ -12,7 +12,7 @@ const PremiumPlans = () => {
     const { data } = await axios.post(
       "/api/checkout",
       { priceId: id },
-      { headers: { "Content-Type": "application/json", 'Authorization': `secret_key: ${process.env.STRIPE_API_KEY}` } }
+      { headers: { "Content-Type": "application/json", 'api-key': process.env.STRIPE_API_KEY } }
     );
     window.location.assign(data);
   };
