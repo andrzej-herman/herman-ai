@@ -22,5 +22,10 @@ model GeniusUser {
   proPurchaseDate DateTime?
 }
 
-
-
+model UserPrompt {
+  id String @id @default(cuid())
+  userId String
+  PromptType String
+  PromptText String
+  createdAt DateTime @default(now())
+}

@@ -23,20 +23,6 @@ export const checkIfPro = async () => {
   return geniusUser.isPro;
 };
 
-// model GeniusUser {
-//   id String @id @default(cuid())
-//   userId String @unique
-//   freeTokensUsed Int @default(0)
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   isPro Boolean @default(false)
-//   subscriptionType String?
-//   stripePriceId String?
-//   proTokenPurchased Int @default(0)
-//   proTokensUsed Int @default(0)
-//   proPurchaseDate DateTime?
-// }
-
 // INCREASE USED TOKENS AFTER EACH PROMPT (VOID)
 export const increaseUsedTokens = async () => {
   const { userId } = auth();
@@ -199,3 +185,37 @@ export const proTokensPurchased = async () => {
     return geniusUser.proTokenPurchased;
   }
 };
+
+// SAVE PROMPT
+export const savePrompt = async (promptText: string, promptType: string) => {
+  const { userId } = auth();
+
+  if (!userId) {
+    return;
+  }
+
+  await prismadb.userPrompt.create({
+    data: { userId: userId, PromptType: promptType, PromptText: promptText },
+  });
+};
+
+// GET LAST FIVE PROMPTS
+export const getLastPrompts = async () => {
+  const prompts = await prismadb.userPrompt.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: 5,
+  });
+
+  let number = 1;
+  let lastPrompts = [ {} ];
+
+  prompts.forEach((p) => {
+    const pr = { lp: number++, text: p.PromptText, type: p.PromptType };
+    lastPrompts.push(pr);
+  });
+
+  return lastPrompts;
+};
+

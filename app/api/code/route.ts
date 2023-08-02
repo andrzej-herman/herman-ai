@@ -1,7 +1,11 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
-import { checkIfCanGenerate, increaseUsedTokens } from "@/lib/genius-user";
+import {
+  checkIfCanGenerate,
+  increaseUsedTokens,
+  savePrompt,
+} from "@/lib/genius-user";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -19,7 +23,7 @@ export async function POST(req: Request) {
   try {
     const { userId } = auth();
     const body = await req.json();
-    const { messages } = body;
+    const { messages, prompt } = body;
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -49,6 +53,7 @@ export async function POST(req: Request) {
     });
 
     await increaseUsedTokens();
+    await savePrompt(prompt, "Generator kodu");
 
     return NextResponse.json(response.data.choices[0].message);
   } catch (error) {

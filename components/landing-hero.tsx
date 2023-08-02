@@ -36,7 +36,7 @@ const LandingHero = () => {
           />
         </div>
       </div>
-      <div className="text-sm md:text-xl font-light text-zinc-400">
+      <div className="text-sm md:text-xl font-light text-zinc-400 px-4 md:px-0">
         Wykorzystaj potęgę sztucznej inteligencji do pracy, nauki, zabawy lub
         jako pomoc w szkole lub na studiach.
       </div>

@@ -1,7 +1,11 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
-import { checkIfCanGenerate, increaseUsedTokens } from "@/lib/genius-user";
+import {
+  checkIfCanGenerate,
+  increaseUsedTokens,
+  savePrompt,
+} from "@/lib/genius-user";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -62,6 +66,7 @@ export async function POST(req: Request) {
     });
 
     await increaseUsedTokens();
+    await savePrompt(prompt, "Generator obrazów");
 
     return NextResponse.json(response.data.data);
   } catch (error) {

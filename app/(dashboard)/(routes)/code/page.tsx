@@ -53,6 +53,7 @@ const CodeGenerationPage = () => {
 
       const response = await axios.post("/api/code", {
         messages: newMessages,
+        prompt: values.prompt,
       });
 
       setMessages((current) => [...current, userMessage, response.data]);
